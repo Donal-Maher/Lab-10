@@ -52,73 +52,83 @@ public class lab10 {
         int month = Integer.parseInt(scan.nextLine());
         String suffix = new String("th");
 
-        if(day == 1 || day == 21 || day == 31) {
+        if (day == 1 || day == 21 || day == 31) {
             suffix = "st";
-        }
-        else if (day == 2 || day == 22) {
+        } else if (day == 2 || day == 22) {
             suffix = "nd";
-        }
-        else if (day == 3 || day == 23) {
+        } else if (day == 3 || day == 23) {
             suffix = "rd";
         }
-        if (day > 0 && day <32) {
+        if (day > 0 && day < 32) {
             System.out.print("You selected " + day + suffix + " of ");
-        }
-        else {
+        } else {
             System.out.println("Invalid day");
         }
-
-        if(month == 1) {
-            System.out.println("January");
-        } else if (month == 2) {
-            System.out.println("February");
-        } else if (month == 3) {
-            System.out.println("March");
-        } else if (month == 4) {
-            System.out.println("April");
-        } else if (month == 5) {
-            System.out.println("May");
-        } else if (month == 6) {
-            System.out.println("June");
-        } else if (month == 7) {
-            System.out.println("July");
-        } else if (month == 8) {
-            System.out.println("Augst");
-        } else if (month == 9) {
-            System.out.println("September");
-        } else if (month == 10) {
-            System.out.println("October");
-        } else if (month == 11) {
-            System.out.println("November");
-        } else if (month == 12) {
-            System.out.println("December");
-        } else {
-            System.out.println("Invalid month");
+        switch (month) {
+            case 1:
+                System.out.println("January");
+                break;
+            case 2:
+                System.out.println("February");
+                break;
+            case 3:
+                System.out.println("March");
+                break;
+            case 4:
+                System.out.println("April");
+                break;
+            case 5:
+                System.out.println("May");
+                break;
+            case 6:
+                System.out.println("June");
+                break;
+            case 7:
+                System.out.println("July");
+                break;
+            case 8:
+                System.out.println("August");
+                break;
+            case 9:
+                System.out.println("September");
+                break;
+            case 10:
+                System.out.println("October");
+                break;
+            case 11:
+                System.out.println("November");
+                break;
+            case 12:
+                System.out.println("December");
+                break;
+            default:
+                System.out.println("Invalid month");
+                break;
         }
     }
 
-public static void Q3() {
-    System.out.println("Q3: Enter how many numbers you want to check for primality: ");
-    int n = Integer.parseInt(scan.nextLine());
-    int counter = 0;
-    for (int i = 0; i < n; i++) {
-    if (i < 2)
-    continue;
-    boolean check = true;
+    public static void Q3() {
+        System.out.println("Q3: Enter how many numbers you want to check for primality: ");
+        int n = Integer.parseInt(scan.nextLine());
+        int counter = 0;
+        for (int i = 0; i < n; i++) {
+            if (i < 2)
+                continue;
+            boolean check = true;
 
-    for (int j = 2; j * j <= i; j++) {
-    if (i % j == 0) {
-    check = false;
-    break;
-    } else {
+            for (int j = 2; j * j <= i; j++) {
+                if (i % j == 0) {
+                    check = false;
+                    break;
+                } else {
 
-    }
-    }
-        if (check == true) {
-        counter++;
-        } 
-        else {}
-    }
+                }
+            }
+            if (check == true) {
+                counter++;
+            } else {
+            }
+        }
 
         System.out.println("There are: " + counter + " primes between 0 and " + n);
     }
@@ -127,8 +137,10 @@ public static void Q3() {
         Random rng = new Random();
 
         String next;
-        System.out.println("Q4: Let's play a game. Type \"A\" to attack, \"B\" to buff your next attack. Kill the enemy to win!");
-        System.out.println("Q4: You must roll higher than the enemy armor class (12) to hit. Roll 20 for a critical hit!");
+        System.out.println(
+                "Q4: Let's play a game. Type \"A\" to attack, \"B\" to buff your next attack. Kill the enemy to win!");
+        System.out.println(
+                "Q4: You must roll higher than the enemy armor class (12) to hit. Roll 20 for a critical hit!");
         System.out.println("Q4: Your damage is 2-16 (2d8)");
 
         int enemyHP = 100;
@@ -161,7 +173,7 @@ public static void Q3() {
                 int attackRoll = rng.nextInt(20) + 1;
                 int damage = 0;
                 System.out.print("You rolled: " + attackRoll);
-                if(check) {
+                if (check) {
                     attackRoll += 5;
                     System.out.print(" + 5 (buff active)\n");
                 } else {
@@ -170,7 +182,7 @@ public static void Q3() {
                 if (attackRoll >= 12) {
                     damage = rng.nextInt(8) + 1;
                     damage += rng.nextInt(8) + 1;
-                    if(check) {
+                    if (check) {
                         damage += 5;
                     }
                     if (attackRoll == 20 || (check && attackRoll == 20 + 5)) {
@@ -178,7 +190,7 @@ public static void Q3() {
                         System.out.print("Critical hit! ");
                     }
                     System.out.print("You dealt " + damage + " damage");
-                    if(check) {
+                    if (check) {
                         System.out.print(" (buffed attack)");
                     }
                     enemyHP -= damage;
@@ -199,4 +211,3 @@ public static void Q3() {
         }
     }
 }
-
