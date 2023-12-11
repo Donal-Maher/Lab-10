@@ -21,26 +21,26 @@ public class lab10 {
             }
 
             if (input.equals("square")) {
-                double a;
+                double sideA;
                 System.out.println("Enter the length of side a: ");
-                a = Double.parseDouble(scan.nextLine());
-                System.out.println("The circumference of the square is: " + a * 4);
-                System.out.println("The area of the square is: " + a * a);
+                sideA = Double.parseDouble(scan.nextLine());
+                System.out.println("The circumference of the square is: " + sideA * 4);
+                System.out.println("The area of the square is: " + sideA * sideA);
 
             } else if (input.equals("rectangle")) {
-                double a, b;
+                double sideA, sideB;
                 System.out.println("Enter the length of side a: ");
-                a = Double.parseDouble(scan.nextLine());
+                sideA = Double.parseDouble(scan.nextLine());
                 System.out.println("Enter the length of side b: ");
-                b = Double.parseDouble(scan.nextLine());
-                System.out.println("The circumference of the rectangle is: " + (2 * a + 2 * b));
-                System.out.println("The area of the rectangle is: " + (a * b));
+                sideB = Double.parseDouble(scan.nextLine());
+                System.out.println("The circumference of the rectangle is: " + (2 * sideA + 2 * sideB));
+                System.out.println("The area of the rectangle is: " + (sideA * sideB));
             } else if (input.equals("circle")) {
-                double r;
+                double radius;
                 System.out.println("Enter the radius: ");
-                r = Double.parseDouble(scan.nextLine());
-                System.out.println("The circumference of the circle is: " + (Math.PI * r * 2));
-                System.out.println("The area of the circle is: " + (Math.PI * r * r));
+                radius = Double.parseDouble(scan.nextLine());
+                System.out.println("The circumference of the circle is: " + (Math.PI * radius * 2));
+                System.out.println("The area of the circle is: " + (Math.PI * radius * radius));
             }
         }
     }
