@@ -109,28 +109,22 @@ public class lab10 {
 
     public static void Q3() {
         System.out.println("Q3: Enter how many numbers you want to check for primality: ");
-        int n = Integer.parseInt(scan.nextLine());
+        int input = Integer.parseInt(scan.nextLine());
         int counter = 0;
-        for (int i = 0; i < n; i++) {
-            if (i < 2)
-                continue;
+        for (int i = 2; i < input; i++) {
             boolean check = true;
-
             for (int j = 2; j * j <= i; j++) {
                 if (i % j == 0) {
                     check = false;
                     break;
-                } else {
-
-                }
+                } 
             }
             if (check == true) {
                 counter++;
-            } else {
-            }
+            } 
         }
 
-        System.out.println("There are: " + counter + " primes between 0 and " + n);
+        System.out.println("There are: " + counter + " primes between 0 and " + input);
     }
 
     public static void Q4() {
