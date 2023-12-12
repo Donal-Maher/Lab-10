@@ -112,14 +112,14 @@ public class lab10 {
         int input = Integer.parseInt(scan.nextLine());
         int counter = 0;
         for (int i = 2; i < input; i++) {
-            boolean check = true;
+            boolean isPrime = true;
             for (int j = 2; j * j <= i; j++) {
                 if (i % j == 0) {
-                    check = false;
+                    isPrime = false;
                     break;
                 }
             }
-            if (check == true) {
+            if (isPrime) {
                 counter++;
             }
         }
