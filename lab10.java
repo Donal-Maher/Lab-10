@@ -134,13 +134,15 @@ public class lab10 {
         int turn = 0;
         int enemyArmorClass = 12;
         int attackBuff = 5;
+        int attackDie = 8;
+        int critHitRoll = 20;
 
         String nextInput;
         System.out.println(
                 "Q4: Let's play a game. Type \"A\" to attack, \"B\" to buff your next attack. Kill the enemy to win!");
         System.out.println(
-                "Q4: You must roll higher than the enemy armor class ("+ enemyArmorClass + ") to hit. Roll 20 for a critical hit!");
-        System.out.println("Q4: Your damage is 2-16 (2d8)");
+                "Q4: You must roll higher than the enemy armor class ("+ enemyArmorClass + ") to hit. Roll " + critHitRoll + " or higher for a critical hit!");
+        System.out.println("Q4: Your damage is 2-" + 2 * attackDie + " (2d" + attackDie + ")");
 
         boolean doBuff = false;
         while (true) {
@@ -176,12 +178,12 @@ public class lab10 {
                     System.out.println();
                 }
                 if (attackRoll >= enemyArmorClass) {
-                    damage = rng.nextInt(8) + 1;
-                    damage += rng.nextInt(8) + 1;
+                    damage = rng.nextInt(attackDie) + 1;
+                    damage += rng.nextInt(attackDie) + 1;
                     if (doBuff) {
                         damage += attackBuff;
                     }
-                    if (attackRoll == 20 || (doBuff && attackRoll == 20 + attackBuff)) {
+                    if (attackRoll >= 20 || (doBuff && attackRoll >= 20 + attackBuff)) {
                         damage *= 2;
                         System.out.print("Critical hit! ");
                     }
