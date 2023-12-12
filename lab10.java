@@ -117,11 +117,11 @@ public class lab10 {
                 if (i % j == 0) {
                     check = false;
                     break;
-                } 
+                }
             }
             if (check == true) {
                 counter++;
-            } 
+            }
         }
 
         System.out.println("There are: " + counter + " primes between 0 and " + input);
@@ -130,61 +130,63 @@ public class lab10 {
     public static void Q4() {
         Random rng = new Random();
 
-        String next;
+        int enemyHP = 100;
+        int turn = 0;
+        int enemyArmorClass = 12;
+        int attackBuff = 5;
+
+        String nextInput;
         System.out.println(
                 "Q4: Let's play a game. Type \"A\" to attack, \"B\" to buff your next attack. Kill the enemy to win!");
         System.out.println(
-                "Q4: You must roll higher than the enemy armor class (12) to hit. Roll 20 for a critical hit!");
+                "Q4: You must roll higher than the enemy armor class ("+ enemyArmorClass + ") to hit. Roll 20 for a critical hit!");
         System.out.println("Q4: Your damage is 2-16 (2d8)");
 
-        int enemyHP = 100;
-        int a = 0;
-
-        boolean check = false;
+        boolean doBuff = false;
         while (true) {
 
             boolean doAttack = false;
-            boolean check2 = false;
-            while (!check2) {
-                next = scan.nextLine();
-                check2 = true;
-                switch (next) {
+            boolean validInput = false;
+            while (!validInput) {
+                nextInput = scan.nextLine();
+                validInput = true;
+                switch (nextInput) {
                     case "A", "a":
                         doAttack = true;
                         break;
                     case "B", "b":
-                        check = true;
-                        System.out.println("Buffing! +5 to your next attack roll and damage");
+                        doBuff = true;
+                        System.out.println("Buffing! +" + attackBuff + " to your next attack roll and damage");
                         break;
                     default:
                         System.out.println("Invalid input");
-                        check2 = false;
+                        validInput = false;
                 }
             }
 
             if (doAttack) {
-                a++;
+                turn++;
                 int attackRoll = rng.nextInt(20) + 1;
                 int damage = 0;
                 System.out.print("You rolled: " + attackRoll);
-                if (check) {
-                    attackRoll += 5;
-                    System.out.print(" + 5 (buff active)\n");
+                if (doBuff) {
+                    attackRoll += attackBuff;
+                    System.out.print(" + "+attackBuff+" (buff active)\n");
                 } else {
                     System.out.println();
                 }
-                if (attackRoll >= 12) {
+                if (attackRoll >= enemyArmorClass) {
                     damage = rng.nextInt(8) + 1;
                     damage += rng.nextInt(8) + 1;
-                    if (check) {
-                        damage += 5;
+                    if (doBuff) {
+                        damage += attackBuff;
                     }
-                    if (attackRoll == 20 || (check && attackRoll == 20 + 5)) {
+                    if (attackRoll == 20 || (doBuff && attackRoll == 20 + attackBuff)) {
                         damage *= 2;
                         System.out.print("Critical hit! ");
                     }
                     System.out.print("You dealt " + damage + " damage");
-                    if (check) {
+                    if (doBuff) {
                         System.out.print(" (buffed attack)");
                     }
                     enemyHP -= damage;
@@ -194,9 +196,9 @@ public class lab10 {
                     System.out.println("Miss");
                 }
 
-                check = false;
+                doBuff = false;
                 if (enemyHP <= 0) {
-                    System.out.println("Enemy died in " + a + " turns");
+                    System.out.println("Enemy died in " + turn + " turns");
                     scan.close();
                     return;
                 }
